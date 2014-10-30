@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="" lang="en" >
+<head>
+<title></title>
+<meta charset="utf-8">
+
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://pwnall.herokuapp.com/" rel="canonical">
+<meta name='generator' content='Jekyll v2.4.0, Octopress v3.0.0.rc.15 Octopress Ink v1.0.0.rc.18'>
+
+<link href='/stylesheets/all-d318e02faf830c680eb6437f1811fab7.css' media='all' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="site">
+    <div class="site-content"><div class="site-top"><div class="site-top-content">
+<header role="banner" class="site-header">
+  <h1 class="site-title"><a class="site-title-link" href="/">My Octopress Blog</a></h1>
+</header>
+<nav class='site-nav' role="navigation">
+    <a class="site-nav-link active " href="/">Home</a>
+    <a class="site-nav-link " href="/archive">Archive</a>
+    <a class="site-nav-link " href="/feed">RSS</a>
+</nav>
+</div></div>
+<div class="site-main">
+<div class="main ">
+  <div class="main-content"><div class="post-index">
+  
+    <article class="entry " role="article">
+  <header class="entry-header">
+    <h1 class="entry-title"><a href='/2014/10/29/octopress-3-0-setup.html' class='article-link'>Octopress 3.0&nbsp;Setup</a></h1>
+    
+    <div class="entry-meta"><time class='entry-date' datetime='2014-10-29T22:59:21-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span></time></div>
+  </header>
+
+  <div class="entry-content"><h2 id="initial-setup">Initial Setup</h2>
+
+<p>The instructions are based off the
+<a href="https://github.com/octopress/octopress/blob/master/README.md">Octopress 3.0 README</a>
+and the
+<a href="https://github.com/octopress/genesis-theme/blob/master/README.md">Octopress Genesis README</a>.
+and the
+<a href="https://github.com/octopress/codefence/blob/master/README.md">Octopress Codefence README</a>.</p>
+
+<p>I figured that the easiest way to start off the blog would be to install
+octopress first, and use it to scaffold the blog.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">gem install --pre octopress
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line">rbenv rehash  <span class="c"># Only necessary if you use rbenv.</span>
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line">octopress new notes  <span class="c"># Replace notes with your blog name.</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="nb">cd </span>notes</div></div></pre></div></figure>
+
+<p>I use <a href="https://github.com/sstephenson/rbenv">rbenv</a>, so I wrote the latest MRI
+version in a <a href="https://gist.github.com/fnichol/1912050">.ruby-version file</a>.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="nb">echo </span>2.1.3 &gt; .ruby-version</div></div></pre></div></figure>
+
+<p>Next, I documented my dependencies in a
+<a href="http://bundler.io/gemfile.html">Gemfile</a>, and used
+<a href="http://bundler.io/">bundler</a> to install the latest versions.</p>
+
+<p>I had to depend on the Github version of the Genesis theme because of
+<a href="https://github.com/octopress/genesis-theme/issues/6">this bug</a>.</p>
+
+<figure class="code-highlight-figure"><figcaption class="code-highlight-caption"><span class="code-highlight-caption-title">Gemfile</span></figcaption><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="n">gem</span> <span class="s1">&#39;octopress&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0.0.rc.15&#39;</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="n">gem</span> <span class="s1">&#39;octopress-codefence&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.4&#39;</span>
+</div></div><div data-line="5" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="n">gem</span> <span class="s1">&#39;octopress-genesis-theme&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;octopress/genesis-theme&#39;</span></div></div></pre></div></figure>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">vim Gemfile
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line">bundle</div></div></pre></div></figure>
+
+<p>I created a Jekyll <code>_config.yml</code> that documents the dependency on the Genesis
+theme and the codefence plugin. I had to set up the site’s base URL, because
+otherwise Octopress would crash.</p>
+
+<figure class="code-highlight-figure"><figcaption class="code-highlight-caption"><span class="code-highlight-caption-title">_config.yml</span></figcaption><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">gems</span><span class="p-Indicator">:</span>
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">octopress-codefence</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">octopress-genesis-theme</span></div></div></pre></div></figure>
+
+<p>I added the <code>theme:</code> prefix to every <code>{{ theme }}</code> mention in the files in
+the <code>_templates</code> directory. For example, <code>_templates/post</code> looks like this.</p>
+
+<figure class="code-highlight-figure"><figcaption class="code-highlight-caption"><span class="code-highlight-caption-title">_templates/post</span></figcaption><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="nn">---</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">theme:&#x7b;&#x7b; layout &#x7d;&#x7d;</span>
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="p-Indicator">&#x7b;&#x7b;</span> <span class="nv">title</span> <span class="p-Indicator">&#x7d;&#x7d;</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="p-Indicator">&#x7b;&#x7b;</span> <span class="nv">date</span> <span class="p-Indicator">&#x7d;&#x7d;</span>
+</div></div><div data-line="5" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="nn">---</span></div></div></pre></div></figure>
+
+<p>I created a configuration file for Genesis.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">mkdir -p _plugins/theme
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line">vim _plugins/theme/config.yml</div></div></pre></div></figure>
+
+<p>My configuration file is very similar to the one in the
+<a href="https://github.com/octopress/genesis-theme/blob/master/README.md">Genesis README</a>,
+but accounts for <a href="https://github.com/octopress/genesis-theme/pull/7">this bug</a>.</p>
+
+<figure class="code-highlight-figure"><figcaption class="code-highlight-caption"><span class="code-highlight-caption-title">_plugins/theme/config.yml</span></figcaption><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># Settings for main header</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;pwnall&#39;s</span><span class="nv"> </span><span class="s">notes&quot;</span>
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">subtitle</span><span class="p-Indicator">:</span> <span class="s">&quot;Un-edited</span><span class="nv"> </span><span class="s">log</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">things</span><span class="nv"> </span><span class="s">I</span><span class="nv"> </span><span class="s">learn&quot;</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="5" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># Links for main navigation</span>
+</div></div><div data-line="6" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">nav</span><span class="p-Indicator">:</span>
+</div></div><div data-line="7" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="p-Indicator">-</span> <span class="p-Indicator">&#x7b;</span> <span class="nv">url</span><span class="p-Indicator">:</span> <span class="s">&#39;/&#39;</span><span class="p-Indicator">,</span> <span class="nv">title</span><span class="p-Indicator">:</span> <span class="s">&#39;Home&#39;</span> <span class="p-Indicator">&#x7d;</span>
+</div></div><div data-line="8" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="p-Indicator">-</span> <span class="p-Indicator">&#x7b;</span> <span class="nv">url</span><span class="p-Indicator">:</span> <span class="s">&#39;/archive&#39;</span><span class="p-Indicator">,</span> <span class="nv">title</span><span class="p-Indicator">:</span> <span class="s">&#39;Archive&#39;</span> <span class="p-Indicator">&#x7d;</span>
+</div></div><div data-line="9" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="p-Indicator">-</span> <span class="p-Indicator">&#x7b;</span> <span class="nv">url</span><span class="p-Indicator">:</span> <span class="s">&#39;/feed&#39;</span><span class="p-Indicator">,</span> <span class="nv">title</span><span class="p-Indicator">:</span> <span class="s">&#39;RSS&#39;</span> <span class="p-Indicator">&#x7d;</span>
+</div></div><div data-line="10" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="11" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># Settings for category index generator</span>
+</div></div><div data-line="12" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span>
+</div></div><div data-line="13" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">prefix</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Category</span>
+</div></div><div data-line="14" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">category</span>
+</div></div><div data-line="15" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="16" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">post_index</span><span class="p-Indicator">:</span>
+</div></div><div data-line="17" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">excerpt_posts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</div></div><div data-line="18" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">permalink_label</span><span class="p-Indicator">:</span> <span class="s">&quot;Permalink&quot;</span>
+</div></div><div data-line="19" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">read_more_label</span><span class="p-Indicator">:</span> <span class="s">&quot;Continue</span><span class="nv"> </span><span class="s">Reading</span><span class="nv"> </span><span class="s">&amp;rarr;&quot;</span>
+</div></div><div data-line="20" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="21" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># Center the text in post and page headings.</span>
+</div></div><div data-line="22" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">center-headings</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></div></div></pre></div></figure>
+
+<p>To set up deployment to <a href="https://pages.github.com/">Github pages</a>, I first had
+<a href="https://github.com/octopress/deploy">octopress-deploy</a>
+generate the scaffold configuration.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">bundle <span class="nb">exec </span>octopress deploy init git</div></div></pre></div></figure>
+
+<p>Then I used the instructions in <code>_deploy.yml</code> to plug in my Github repository
+details.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">method</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">git</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">site_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">_site</span>
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">git_url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">git@github.com:pwnall/notes.git</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">git_branch</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">gh-pages</span></div></div></pre></div></figure>
+
+<p>I created a Git repository to hold everything.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">git init</div></div></pre></div></figure>
+
+<p>I added a <code>.gitignore</code> before doing my initial commit.</p>
+
+<figure class="code-highlight-figure"><figcaption class="code-highlight-caption"><span class="code-highlight-caption-title">.gitignore</span></figcaption><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c"># Vim.</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line">.*sw*
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c"># OSX.</span>
+</div></div><div data-line="5" class="code-highlight-row numbered"><div class="code-highlight-line">.DS_Store
+</div></div><div data-line="6" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="7" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c"># Octopress build products.</span>
+</div></div><div data-line="8" class="code-highlight-row numbered"><div class="code-highlight-line">_site/
+</div></div><div data-line="9" class="code-highlight-row numbered"><div class="code-highlight-line">.sass-cache/
+</div></div><div data-line="10" class="code-highlight-row numbered"><div class="code-highlight-line">.code-highlighter-cache/</div></div></pre></div></figure>
+
+<h2 id="writing">Writing</h2>
+
+<p>I use Octopress’ scaffolding command to create a new post, and I start a server
+in watch mode, so I can preview my changes.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">octopress new post <span class="s2">&quot;Octopress 3.0 Setup&quot;</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line">bundle <span class="nb">exec </span>octopress server --watch</div></div></pre></div></figure>
+
+<p>When I’m happy, I commit the new article and deploy.</p>
+
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">git add -A
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line">git commit -m <span class="s2">&quot;New post&quot;</span>
+</div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line">octopress deploy</div></div></pre></div></figure>
+
+</div>
+
+  <footer class='entry-footer'>
+    <a class='permalink' rel="full-article" href="/2014/10/29/octopress-3-0-setup.html">Permalink</a>
+  </footer>
+</article>
+  
+</div>
+</div>
+</div>
+</div>
+<div class="site-bottom"><div class="site-bottom-content">
+<footer class='site-footer' role="contentinfo">
+  <p class='footer-copyright'>Copyright © 2014 -  - Powered by Octopress</p>
+  
+  
+  <form class='site-search' action="https://google.com/search" method="get">
+  <input type="hidden" name="q" value="site:pwnall.herokuapp.com">
+  <input class="search-input" type="text" name="q" results="0" placeholder="Search&hellip;" accesskey="/">
+</form>
+</footer>
+</div></div>
+</div>
+  
+  </div>
+</body>
+</html>
