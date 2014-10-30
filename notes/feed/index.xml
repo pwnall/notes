@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title></title>
-  <link rel="alternate" type="text/html" href="http://pwnall.herokuapp.com/"/>
-  <link rel="self" type="application/atom+xml" href="http://pwnall.herokuapp.com/feed/"/>
-  <id>http://pwnall.herokuapp.com</id>
+  <link rel="alternate" type="text/html" href="https://pwnall.github.io/notes//"/>
+  <link rel="self" type="application/atom+xml" href="https://pwnall.github.io/notes/feed/"/>
+  <id>https://pwnall.github.io/notes/</id>
   <updated>2014-10-29T22:59:21-04:00</updated>
   <generator uri="http://octopress.org/">Octopress</generator>
   <rights>Copyright © 2014, </rights>
@@ -11,16 +11,16 @@
   <entry>
     <title type="html">Octopress 3.0 Setup</title>
     
-    <link rel="alternate" type="text/html" href="http://pwnall.herokuapp.com/2014/10/29/octopress-3-0-setup.html"/>
+    <link rel="alternate" type="text/html" href="https://pwnall.github.io/notes/2014/10/29/octopress-3-0-setup.html"/>
     
     <id>/2014/10/29/octopress-3-0-setup</id>
     <published>2014-10-29T22:59:21-04:00</published>
     <updated>2014-10-29T22:59:21-04:00</updated>
     <author>
       <name></name>
-      <uri>http://pwnall.herokuapp.com</uri>
+      <uri>https://pwnall.github.io/notes/</uri>
     </author>
-    <content type="html" xml:base="http://pwnall.herokuapp.com" xml:lang="en">
+    <content type="html" xml:base="https://pwnall.github.io/notes/" xml:lang="en">
 <![CDATA[
 
 <h2 id="initial-setup">Initial Setup</h2>
@@ -133,7 +133,8 @@ details.</p>
 </div></div><div data-line="6" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="7" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c"># Octopress build products.</span>
 </div></div><div data-line="8" class="code-highlight-row numbered"><div class="code-highlight-line">_site/
 </div></div><div data-line="9" class="code-highlight-row numbered"><div class="code-highlight-line">.sass-cache/
-</div></div><div data-line="10" class="code-highlight-row numbered"><div class="code-highlight-line">.code-highlighter-cache/</div></div></pre></div></figure>
+</div></div><div data-line="10" class="code-highlight-row numbered"><div class="code-highlight-line">.code-highlighter-cache/
+</div></div><div data-line="11" class="code-highlight-row numbered"><div class="code-highlight-line">.deploy/</div></div></pre></div></figure>
 
 <h2 id="writing">Writing</h2>
 
